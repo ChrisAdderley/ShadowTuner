@@ -33,6 +33,8 @@ namespace ShadowTuner
 
     public static float ShadowBias = 0.01f;
     public static float NormalBias = 0.58f;
+    public static int ShadowProjectionMode = 0;
+    public static int ShadowResolutionLevel = 4;
 
     public static void Load()
     {
@@ -45,6 +47,8 @@ namespace ShadowTuner
         settingsNode = GameDatabase.Instance.GetConfigNode("ShadowTuner/ShadowTunerSettings");
         settingsNode.TryGetValue("ShadowBias", ref ShadowBias);
         settingsNode.TryGetValue("NormalBias", ref NormalBias );
+        settingsNode.TryGetValue("ShadowProjectionMode", ref ShadowProjectionMode);
+        settingsNode.TryGetValue("ShadowResolutionLevel", ref ShadowResolutionLevel);
       }
       else
       {

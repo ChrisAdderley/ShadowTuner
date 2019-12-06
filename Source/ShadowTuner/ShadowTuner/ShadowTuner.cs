@@ -32,6 +32,8 @@ namespace ShadowTuner
     {
       l.shadowBias = Settings.ShadowBias;
       l.shadowNormalBias = Settings.NormalBias;
+      l.shadowResolution = (UnityEngine.Rendering.LightShadowResolution)Mathf.Clamp(Settings.ShadowResolutionLevel, 0, 4);
+      QualitySettings.shadowProjection = (ShadowProjection)Mathf.Clamp(Settings.ShadowProjectionMode, 0, 1);
     }
 
 
@@ -112,8 +114,15 @@ namespace ShadowTuner
 
       GUILayout.BeginHorizontal();
       GUILayout.Label("Shadow Resolution");
-      keyLight.shadowResolution = (UnityEngine.Rendering.LightShadowResolution)(int)GUILayout.HorizontalSlider((int)keyLight.shadowResolution, 0f, 3f, GUILayout.MinWidth(75f));
+      keyLight.shadowResolution = (UnityEngine.Rendering.LightShadowResolution)(int)GUILayout.HorizontalSlider((int)keyLight.shadowResolution, 0f, 4f, GUILayout.MinWidth(75f));
       GUILayout.Label(String.Format("{0:F2}", keyLight.shadowResolution.ToString()));
+      GUILayout.EndHorizontal();
+
+
+      GUILayout.BeginHorizontal();
+      GUILayout.Label("Shadow Projection");
+      QualitySettings.shadowProjection = (ShadowProjection)(int)GUILayout.HorizontalSlider((int)QualitySettings.shadowProjection, 0f, 1f, GUILayout.MinWidth(75f));
+      GUILayout.Label(String.Format("{0:F2}", QualitySettings.shadowProjection.ToString()));
       GUILayout.EndHorizontal();
 
       GUI.DragWindow();
